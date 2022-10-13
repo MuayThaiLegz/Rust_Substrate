@@ -1,0 +1,17 @@
+[package]
+name = "rust_blockchain"
+version = "0.1.0"
+edition = "2022"
+
+[lib]
+name = "rustblockchainlib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "rust_blockchain"
+path = "src/main.rs"
+
+[dependencies]
+crypto-hash = "0.3.4"
+#ed25519-dalek = "1.0.0-pre.3"
+#rand = "0.7.3"

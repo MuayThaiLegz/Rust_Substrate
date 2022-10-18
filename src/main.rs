@@ -1,10 +1,12 @@
-use std::rc::Rc;
-use std::sync::{Arc, Mutex};
+use std::time::{Duration, Instant};
 
 fn main() {
-    let a = 10;
-    let b = Box::new(20);
-    let c = Rc::new(Box::new(30));
-    let d = Arc::new(Mutex::new(40));
-println!("a: {:?}, b: {:?}, c: {:?}, d: {:?}", a,b,c,d);
+    let mut count = 0;
+    let time_limit  = Duration::new(1,0);
+    let start = Instant::now();
+
+    while (Instant::now() - start) < time_limit {
+        count += 1;
+    }
+    println!("{}", count);
 }

@@ -1,7 +1,7 @@
 use ed25519_dalek::Keypair;
 use ed25519_dalek::PublicKey;
 use ed25519_dalek::SecretKey;
-use ed25519_dalek::OsRng;
+use rand::rngs::OsRng;
 
 #[derive(Debug)]
 pub struct Wallet {

@@ -3,7 +3,7 @@ use ed25519_dalek::PublicKey;
 
 #[derive(Debug)]
 pub struct Blockchain {
-    block: Vec<Block>,
+    blocks: Vec<Block>,
     unmined_transactions: Vec<Transaction>,
     mining_reward: f32,
 }
@@ -11,7 +11,7 @@ pub struct Blockchain {
 impl Blockchain {
     pub fn new() -> Self {
         Blockchain {
-            block: vec![],
+            blocks: vec![],
             unmined_transactions: vec![],
             mining_reward: MINING_REWARD,
         }
@@ -23,13 +23,13 @@ impl Blockchain {
             sender: None,
             receiver: Some(miner_address),
             amount: self.mining_reward,
-            signeture: None,
+            signature: None,
         });
 
         // Create block
         let transactions = &self.unmined_transactions;
-        let mut block = Block::new(transaction.to_vec());
-        match self.block.last() {
+        let mut block = Block::new(transactions.to_vec());
+        match self.blocks.last() {
             Some(pre_block) => block.set_pre_hash(pre_block.hash.to_owned()),
             None => block.set_pre_hash("0".to_string()),   
         }

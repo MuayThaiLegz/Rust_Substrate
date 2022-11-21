@@ -10,13 +10,12 @@ pub struct Block {
 }
 
 impl Block {
-
     //
     // Block constructor
     // Creates block from previous block hash and transaction data
     //
 
-    pub fn new(transaction: <Transaction>)
+    pub fn new(transaction: Vec<Transaction>) -> Self {
         let time = now();
         let empty_string = String::new(); 
         let nonce = 0u64;
@@ -27,7 +26,8 @@ impl Block {
             transaction,
             nonce,
         }
-    
+    }
+     
     pub fn set_hash(&mut self) {
         self.hash = calculate_hash(
             &self.pre_hash,

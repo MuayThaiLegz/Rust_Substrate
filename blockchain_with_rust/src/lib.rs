@@ -12,7 +12,7 @@ const DIFFICULT_LEVEL: i32 = 2;
 const MINING_REWARD: f32 = 100f32;
 
 pub fn now() -> u64 {
-    Instant::now().enlapsed().as_secs()
+    Instant::now().elapsed().as_secs()
 }
 
 /// Calculate crypto hash of block
@@ -48,11 +48,12 @@ pub fn calculate_hash(
     nonce: &u64,
 ) -> String {
     let mut bytes = vec![];
-    bytes.extend(&timestamp.to_ne_bytes())
+    bytes.extend(&timestamp.to_ne_bytes());
     bytes.extend(
         transactions
             .iter()
             .flat_map(|transaction| transaction.bytes())
+            .collect::<Vec<u8>>(),
     );
     bytes.extend(pre_hash.as_bytes());
     bytes.extend(&nonce.to_ne_bytes());
